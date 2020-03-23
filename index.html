@@ -1,0 +1,77 @@
+<html>
+  <body>
+    <section id="section-welcome">
+      <h1>Welcome to Passworder!</h1>
+      <p>Manage your password easily</p>
+      <button id="button-login">Login</button>
+      <button id="button-register">Register</button>
+    </section>
+    <section id="section-login">
+      <form id="form-login">
+        <div>
+          <label for="login-email">Email</label><br />
+          <input
+            type="email"
+            id="login-email"
+            name="login-email"
+            size="30"
+            value=""
+          />
+        </div>
+        <div>
+          <label for="login-password">Password</label><br />
+          <input
+            type="password"
+            id="login-password"
+            name="login-password"
+            size="30"
+            value=""
+          />
+        </div>
+        <div>
+          <input type="submit" value="Login" />
+        </div>
+      </form>
+    </section>
+    <section id="section-register">
+      <form id="form-register">
+        <div>
+          <label for="register-name">Name</label><br />
+          <input
+            type="text"
+            id="register-name"
+            name="register-name"
+            size="30"
+            value=""
+          />
+        </div>
+        <div>
+          <label for="register-email">Email</label><br />
+          <input
+            type="email"
+            id="register-email"
+            name="register-email"
+            size="30"
+            value=""
+          />
+        </div>
+        <div>
+          <label for="register-password">Password</label><br />
+          <input
+            type="password"
+            id="register-password"
+            name="register-password"
+            size="30"
+            value=""
+          />
+        </div>
+        <div>
+          <input type="submit" value="Register" />
+        </div>
+      </form>
+    </section>
+    <span id="status-display"></span>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popup.js"></script>
+  </body>
+</html>
