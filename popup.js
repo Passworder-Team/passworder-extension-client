@@ -9,6 +9,11 @@
 //   })
 // })
 
+// GLOBAL VARS
+
+let credentials
+let token
+
 function showRegisterPage() {
   $('#section-register').show()
   $('#section-welcome').hide()
@@ -21,15 +26,34 @@ function showLoginPage() {
 }
 function showWelcomePage() {
   chrome.storage.local.get('token', response => {
-    if (response.token) {
-      // document.body.style.backgroundColor = response.colour
-      console.log(response.token)
-    } else {
-      console.log('gagal deh')
-    }
     $('#section-register').hide()
     $('#section-welcome').show()
     $('#section-login').hide()
+    if (response.token) {
+      token = response.token
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, { greeting: 'hello' }, function(
+          response
+        ) {
+          credentials = response.credentials
+          $('#button-login').hide()
+          $('#button-register').hide()
+
+          if (credentials.email && credentials.password) {
+            $('#div-add-credentials').show()
+            $('#email').val(credentials.email)
+            $('#password').val(credentials.password)
+          } else {
+            $('#div-add-credentials').hide()
+            $('#text-info').val('No credentials detected.')
+          }
+        })
+      })
+    } else {
+      $('#button-login').show()
+      $('#button-register').show()
+      // show button login and register
+    }
   })
 }
 
@@ -50,6 +74,25 @@ function register() {
       chrome.storage.local.set({ name: result.name })
       chrome.storage.local.set({ email: result.email })
       showWelcomePage()
+    })
+    .fail(err => {
+      console.log(err)
+    })
+}
+
+function addCredentials() {
+  $.ajax({
+    type: 'POST',
+    url: 'http://localhost:3000/passwords',
+    data: credentials,
+    headers: {
+      token
+    }
+  })
+    .done(result => {
+      console.log(result)
+      // hide form
+      $('#div-add-credentials').hide()
     })
     .fail(err => {
       console.log(err)
@@ -79,15 +122,8 @@ function login() {
 }
 
 $(document).ready(function() {
-  chrome.storage.local.get('token', response => {
-    if (response.token) {
-      // document.body.style.backgroundColor = response.colour
-      console.log(response.token)
-      showWelcomePage()
-    } else {
-      showRegisterPage()
-    }
-  })
+  showWelcomePage()
+
   $('#form-register').submit(function(e) {
     e.preventDefault()
     register()
@@ -101,5 +137,9 @@ $(document).ready(function() {
   })
   $('#button-login').click(function() {
     showLoginPage()
+  })
+  $('#form-add-credentials').submit(function(e) {
+    e.preventDefault()
+    addCredentials()
   })
 })

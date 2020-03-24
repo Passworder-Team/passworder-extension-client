@@ -1,8 +1,23 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="./popup-styles.css" />
+  </head>
+
   <body>
-    <section id="section-welcome">
+    <section class="section" id="section-welcome">
       <h1>Welcome to Passworder!</h1>
       <p>Manage your password easily</p>
+      <p id="text-info"></p>
+      <div id="div-add-credentials">
+        <h1>Wanna save password from this page?</h1>
+        <form id="form-add-credentials">
+          <label>Email</label>
+          <input type="text" name="email" id="email" />
+          <label>Password</label>
+          <input type="text" name="password" id="password" />
+          <input type="submit" value="Save" />
+        </form>
+      </div>
       <button id="button-login">Login</button>
       <button id="button-register">Register</button>
     </section>
