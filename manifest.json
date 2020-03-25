@@ -10,13 +10,25 @@
   },
   "content_scripts": [
     {
-      "js": ["jquery-3.4.1.min.js", "content.js"],
-      "css": ["content.css"],
-      "matches": ["https://*.google.com/*"]
+      "js": [
+        "jquery-3.4.1.min.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
     }
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
-  "permissions": ["tabs", "storage"]
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
 }

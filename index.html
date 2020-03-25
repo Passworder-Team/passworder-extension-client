@@ -1,91 +1,153 @@
 <html>
   <head>
     <link rel="stylesheet" href="./popup-styles.css" />
+    <link rel="stylesheet" href="./bulma.min.css" />
   </head>
 
   <body>
-    <section class="section" id="section-welcome">
-      <h1>Welcome to Passworder!</h1>
-      <p>Manage your password easily</p>
-      <p id="text-info"></p>
-      <div id="div-add-credentials">
-        <h1>Wanna save password from this page?</h1>
-        <form id="form-add-credentials">
-          <label>Email</label>
-          <input type="text" name="email" id="email" />
-          <label>Password</label>
-          <input type="text" name="password" id="password" />
-          <input type="submit" value="Save" />
+    <div class="wrapper">
+      <section class="section-custom" id="section-welcome">
+        <h1 class="title">Welcome to Passworder!</h1>
+        <p class="subtitle">Manage your password easily</p>
+        <p id="text-info">No credentials detected.</p>
+        <div id="div-add-credentials">
+          <h1 class="subtitle">Wanna save password from this page?</h1>
+          <form id="form-add-credentials">
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input
+                  class="input"
+                  name="email"
+                  id="email"
+                  type="text"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <input
+                  class="input"
+                  name="password"
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <input
+              class="button is-primary is-small"
+              type="submit"
+              value="Save"
+            />
+          </form>
+        </div>
+        <button class="button is-primary is-small" id="button-login">
+          Login
+        </button>
+        <button class="button is-primary is-small" id="button-register">
+          Register
+        </button>
+        <button class="button is-primary is-small" id="button-logout">
+          Logout
+        </button>
+      </section>
+      <section id="section-login">
+        <p class="title">Login to Passworder</p>
+        <form id="form-login">
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+                class="input"
+                type="email"
+                id="login-email"
+                name="login-email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                id="login-password"
+                name="login-password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <input
+            class="button is-primary is-small"
+            type="submit"
+            value="Login"
+          />
         </form>
-      </div>
-      <button id="button-login">Login</button>
-      <button id="button-register">Register</button>
-    </section>
-    <section id="section-login">
-      <form id="form-login">
-        <div>
-          <label for="login-email">Email</label><br />
+      </section>
+      <section id="section-register">
+        <p class="title">Register to Passworder</p>
+        <form id="form-register">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="register-name"
+                name="register-name"
+                placeholder="Name"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Phone Number</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="register-phone"
+                name="register-phone"
+                placeholder="Phone number"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+                class="input"
+                type="email"
+                id="register-email"
+                name="register-email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                id="register-password"
+                name="register-password"
+                placeholder="Password"
+              />
+            </div>
+          </div>
           <input
-            type="email"
-            id="login-email"
-            name="login-email"
-            size="30"
-            value=""
+            class="button is-primary is-small"
+            type="submit"
+            value="Register"
           />
-        </div>
-        <div>
-          <label for="login-password">Password</label><br />
-          <input
-            type="password"
-            id="login-password"
-            name="login-password"
-            size="30"
-            value=""
-          />
-        </div>
-        <div>
-          <input type="submit" value="Login" />
-        </div>
-      </form>
-    </section>
-    <section id="section-register">
-      <form id="form-register">
-        <div>
-          <label for="register-name">Name</label><br />
-          <input
-            type="text"
-            id="register-name"
-            name="register-name"
-            size="30"
-            value=""
-          />
-        </div>
-        <div>
-          <label for="register-email">Email</label><br />
-          <input
-            type="email"
-            id="register-email"
-            name="register-email"
-            size="30"
-            value=""
-          />
-        </div>
-        <div>
-          <label for="register-password">Password</label><br />
-          <input
-            type="password"
-            id="register-password"
-            name="register-password"
-            size="30"
-            value=""
-          />
-        </div>
-        <div>
-          <input type="submit" value="Register" />
-        </div>
-      </form>
-    </section>
-    <span id="status-display"></span>
+        </form>
+      </section>
+      <span id="status-display"></span>
+    </div>
     <script src="./jquery-3.4.1.min.js"></script>
     <script src="./popup.js"></script>
   </body>

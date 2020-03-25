@@ -14,6 +14,12 @@
 let credentials
 let token
 
+function showTextInfo(text) {
+  $('#text-info').empty()
+  $('#text-info').append(text)
+  $('#text-info').show()
+}
+
 function showRegisterPage() {
   $('#section-register').show()
   $('#section-welcome').hide()
@@ -26,43 +32,55 @@ function showLoginPage() {
 }
 function showWelcomePage() {
   chrome.storage.local.get('token', response => {
+    // welcome section ditampilkan
     $('#section-register').hide()
     $('#section-welcome').show()
     $('#section-login').hide()
+
     if (response.token) {
+      console.log('tokennya ada', response.token)
+      // cek apakah ada tokennnnn
+      $('#button-login').hide()
+      $('#button-register').hide()
+      $('#button-logout').show()
       token = response.token
       chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, { greeting: 'hello' }, function(
           response
         ) {
           credentials = response.credentials
-          $('#button-login').hide()
-          $('#button-register').hide()
 
           if (credentials.email && credentials.password) {
             $('#div-add-credentials').show()
+            $('#text-info').hide()
             $('#email').val(credentials.email)
             $('#password').val(credentials.password)
           } else {
+            console.log('kenak trigger, gaada credentials')
             $('#div-add-credentials').hide()
-            $('#text-info').val('No credentials detected.')
+            showTextInfo('No credentials detected.')
           }
         })
       })
     } else {
+      console.log('ini kenak trigger')
+      showTextInfo('')
+      $('#div-add-credentials').hide()
       $('#button-login').show()
       $('#button-register').show()
-      // show button login and register
+      $('#button-logout').hide()
     }
   })
 }
 
 function register() {
+  const phoneNumber = $('#register-phone').val()
   const name = $('#register-name').val()
   const email = $('#register-email').val()
   const password = $('#register-password').val()
 
-  const data = { email, password, name }
+  const data = { email, password, name, phoneNumber }
+  console.log(data)
   $.ajax({
     type: 'POST',
     url: 'http://localhost:3000/auth/register',
@@ -93,10 +111,17 @@ function addCredentials() {
       console.log(result)
       // hide form
       $('#div-add-credentials').hide()
+      // tampilkan password saved
+      showTextInfo('Credentials saved.')
     })
     .fail(err => {
       console.log(err)
     })
+}
+
+function logout() {
+  chrome.storage.local.clear()
+  showWelcomePage()
 }
 
 function login() {
@@ -142,4 +167,8 @@ $(document).ready(function() {
     e.preventDefault()
     addCredentials()
   })
+  $('#button-logout').click(function() {
+    logout()
+  })
+  
 })

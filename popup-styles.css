@@ -1,3 +1,6 @@
-.section {
+.section-custom {
   width: 300px;
+}
+.wrapper {
+  margin: 10px;
 }
