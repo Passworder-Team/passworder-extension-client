@@ -92,9 +92,10 @@ function register() {
       chrome.storage.local.set({ name: result.name })
       chrome.storage.local.set({ email: result.email })
       showWelcomePage()
+      $('#text-register-info').empty()
     })
     .fail(err => {
-      console.log(err)
+      $('#text-register-info').append('Error when registering your account.')
     })
 }
 
@@ -108,14 +109,11 @@ function addCredentials() {
     }
   })
     .done(result => {
-      console.log(result)
-      // hide form
       $('#div-add-credentials').hide()
-      // tampilkan password saved
       showTextInfo('Credentials saved.')
     })
     .fail(err => {
-      console.log(err)
+      showTextInfo('Error adding your credential.')
     })
 }
 
@@ -140,9 +138,10 @@ function login() {
       chrome.storage.local.set({ name: result.name })
       chrome.storage.local.set({ email: result.email })
       showWelcomePage()
+      $('#text-login-info').empty()
     })
     .fail(err => {
-      console.log(err)
+      $('#text-login-info').append('Wrong email/password')
     })
 }
 
