@@ -170,5 +170,11 @@ $(document).ready(function() {
   $('#button-logout').click(function() {
     logout()
   })
+  $('#back-to-welcome-1').click(function() {
+    showWelcomePage()
+  })
+  $('#back-to-welcome-2').click(function() {
+    showWelcomePage()
+  })
   
 })

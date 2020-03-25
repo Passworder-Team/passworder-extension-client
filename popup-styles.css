@@ -1,6 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 50px;
+}
+
 .section-custom {
   width: 300px;
 }
-.wrapper {
-  margin: 10px;
+
+.is-primary {
+  /* : black !important; */
+  background-color: rgb(38, 71, 87) !important;
+}
+
+.is-danger {
+  background-color: rgb(148, 45, 45) !important;
 }
